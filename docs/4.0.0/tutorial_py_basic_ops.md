@@ -106,7 +106,9 @@ UINT8
 ```
 检查以下结果：
 
-<center>![roi](/docs/4.0.0/img/roi.jpg)<center>
+<div align=center>
+![roi](/docs/4.0.0/img/roi.jpg)
+</div>
 
 ## 拆分和合并图像通道
 
@@ -171,7 +173,9 @@ plt.show()
 
 请参阅下面的结果。（图像是通过matplotlib展示的。因此红色和蓝色通道将互换）：
 
-<center>![border](/docs/4.0.0/img/border.jpg)<center>
+<div align=center>
+![border](/docs/4.0.0/img/border.jpg)
+</div>
 
 ## 其他资源
 
