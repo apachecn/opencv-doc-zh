@@ -1,0 +1,141 @@
+# 图像入门
+
+## 目标
+
+在本次会议中:
+
+* 在这里，你将学习如何读取图像、如何显示图像以及如何将其保存起来
+* 你要学习这些函数：**[cv.imread()](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56)**、**[cv.imshow()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563)**、**[cv.imwrite()](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce)**
+* 您还可以选择学习如何使用Matplotlib显示图像。
+
+## 使用OpenCV
+
+### 读取图像
+
+使用 **[cv.imread()](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56)** 函数读取一张图像，图片应该在工作目录中，或者应该提供完整的图像路径。
+
+第二个参数是一个flag，指定了应该读取图像的方式
+* **[cv.IMREAD_COLOR](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80af660544735200cbe942eea09232eb822 "If set, always convert image to the 3 channel BGR color image. ")**：加载彩色图像，任何图像的透明度都会被忽略，它是默认标志
+* **[cv.IMREAD_GRAYSCALE](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80ae29981cfc153d3b0cef5c0daeedd2125 "If set, always convert image to the single channel grayscale image (codec internal conversion)...")**：以灰度模式加载图像
+* **[cv.IMREAD_UNCHANGED](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80aeddd67043ed0df14f9d9a4e66d2b0708 "If set, return the loaded image as is (with alpha channel, otherwise it gets cropped). ")**：加载图像，包括alpha通道
+ 
+Note
+* 你可以简单地分别传递整数1、0或-1，而不是这三个flag。
+
+看下面的代码
+```python
+import numpy as np
+import cv2 as cv
+# 用灰度模式加载图像
+img = cv.imread('messi5.jpg', 0)
+```
+
+**注意**
+
+即使图像路径错误，它也不会抛出任何错误，但是`打印 img`会给你`None`
+
+### 显示图像
+
+用 **[cv.imshow()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563)** 函数在窗口中显示图像，窗口自动适应图像的大小。
+
+第一个参数是窗口名，它是一个字符串，第二个参数就是我们的图像。你可以根据需要创建任意数量的窗口，但是窗口名字要不同。
+
+```python
+cv.imshow('image', img)
+cv.waitKey(0)
+cv.destroyAllWindows()
+```
+
+一个窗口的截图可能看起来像这样 (in Fedora-Gnome machine):
+![图片](./img/opencv_screenshot.jpg)
+
+**[cv.waitKey()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7 "Waits for a pressed key.")** 是一个键盘绑定函数，它的参数是以毫秒为单位的时间。该函数为任意键盘事件等待指定毫秒。如果你在这段时间内按下任意键，程序将继续。如果传的是0，它会一直等待键盘按下。它也可以设置检测特定的击键，例如，按下键a等，我们将在下面讨论。
+
+
+Note
+* 除了绑定键盘事件，该函数还会处理许多其他GUI事件，因此你必须用它来实际显示图像。
+
+**[cv.destroyAllWindows()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga6b7fc1c1a8960438156912027b38f481 "Destroys all of the HighGUI windows.")** 简单的销毁我们创建的所有窗口。如果你想销毁任意指定窗口，应该使用函数 **[cv.destroyWindow()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga851ccdd6961022d1d5b4c4f255dbab34 "Destroys the specified window. ")** 参数是确切的窗口名。
+
+Note
+
+有一种特殊情况，你可以先创建一个窗口然后加载图像到该窗口。在这种情况下，你能指定窗口是否可调整大小。它是由这个函数完成的 **[cv.namedWindow()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga5afdf8410934fd099df85c75b2e0888b "Creates a window. ")**。默认情况下，flag是 **[cv.WINDOW_AUTOSIZE](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f "the user cannot resize the window, the size is constrainted by the image displayed. ")**。但如果你指定了flag为 **[cv.WINDOW_NORMAL](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3a29e45c5af696f73ce5e153601e5ca0f1 "the user can resize the window (no constraint) / also use to switch a fullscreen window to a normal s...")**，你能调整窗口大小。当图像尺寸太大，在窗口中添加跟踪条是很有用的。
+
+
+看下面的代码：
+```python
+cv.namedWindow('image', cv.WINDOW_NORMAL)
+cv.imshow('image',img)
+cv.waitKey(0)
+cv.destroyAllWindows()
+```
+
+### 保存图像
+
+保存图像，用这个函数 **[cv.imwrite()](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce "Saves an image to a specified file. ")**。
+
+第一个参数是文件名，第二个参数是你要保存的图像。
+
+```python
+cv.imwrite('messigray.png',img)
+```
+
+将该图像用PNG格式保存在工作目录。
+
+### 总结一下
+
+下面的程序以灰度模式读取图像，显示图像，如果你按下 's‘ 会保存和退出图像，或者按下ESC退出不保存。
+
+```python
+import numpy as np
+import cv2 as cv
+
+img = cv.imread('messi5.jpg',0)
+cv.imshow('image',img)
+k = cv.waitKey(0)
+if k == 27: # ESC 退出
+    cv.destroyAllWindows()
+elif k == ord('s'): # 's' 保存退出
+    cv.imwrite('messigray.png',img)
+    cv.destroyAllWindows()
+```
+
+**注意**
+
+如果你使用的是64位机器，你需要修改`k = cv.waitKey(0)`像这样：`k = cv.waitKey(0) & 0xFF`
+
+## 使用Matplotlib
+
+Matplotlib是一个Python的绘图库，提供了丰富多样的绘图函数。你将在接下来的文章中看到它们。在这里，你将学习如何使用Matplotlib来显示图像。你还能用Matplotlib缩放图像，保存图像等。
+
+```python
+import numpy as np
+import cv2 as cv
+from matplotlib import pyplot as plt
+
+img = cv.imread('messi5.jpg',0)
+plt.imshow(img, cmap = 'gray', interpolation = 'bicubic')
+plt.xticks([]), plt.yticks([]) # 隐藏X和Y轴的刻度值
+plt.show()
+```
+
+窗口的屏幕截图是这样的：
+![图片](./img/matplotlib_screenshot.jpg)
+
+**参考**
+
+Matplotlib提供了大量的绘图选项。有关更多详情信息，请参阅Matplotlib文档。有一些，我们用这种方式将会知道。
+
+**注意**
+
+彩色图像OpenCV用的BGR模式，但是Matplotlib显示用的RGB模式。因此如果图像用OpenCV加载，则Matplotlib中彩色图像将无法正常显示。更多细节请看练习。
+
+## 其他资源
+
+1. **[Matplotlib Plotting Styles and Features](http://matplotlib.org/api/pyplot_api.html)**
+
+## 练习
+
+1. 当你尝试用OpenCV加载图像并用Matplotlib来显示，就会出现一些问题。阅读这篇 **[讨论](http://stackoverflow.com/a/15074748/1134940)** 并理解它。
+
+
