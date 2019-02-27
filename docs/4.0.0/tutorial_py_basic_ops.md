@@ -107,7 +107,7 @@ UINT8
 检查以下结果：
 
 <div align=center>
-![roi](/docs/4.0.0/img/roi.jpg)
+<img src="/docs/4.0.0/img/roi.jpg">
 </div>
 
 ## 拆分和合并图像通道
