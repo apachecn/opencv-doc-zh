@@ -140,9 +140,7 @@ cv.spilt()是一项代价高昂的操作（就时间而言）。所以只有在�
 * top,bottom,left,right-对应方向上的几个像素宽的边界
 * borderType-定义要添加的边框类型的标志。它可以是以下类型：
 >* [cv.BORDER_CONSTANT](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5aed2e4346047e265c8c5a6d0276dcd838)- 添加一个恒定的彩色边框。该值应作为下一个参数给出。
-*
 >* [cv.BORDER_REFLECT](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5a815c8a89b7cb206dcba14d11b7560f4b)-边框将是边框元素的镜像反射，如下所示：fedcba|abcdefgh|hgfedcb
-*
 >* [cv.BORDER_REFLECT_101](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5ab3c5a6143d8120b95005fa7105a10bb4)或者[ cv.BORDER_DEFAULT](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5afe14c13a4ea8b8e3b3ef399013dbae01)-与上面相同，但略有改动，如下所示： gfedcb | abcdefgh | gfedcba
 >* [cv.BORDER_REPLICATE ](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5aa1de4cff95e3377d6d0cbe7569bd4e9f)-最后一个元素被复制，如下所示： aaaaaa | abcdefgh | hhhhhhh
 >* [cv.BORDER_WRAP](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5a697c1b011884a7c2bdc0e5caf7955661)-无法解释，它看起来像这样： cdefgh | abcdefgh | abcdefg
