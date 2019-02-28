@@ -93,5 +93,5 @@ cv.destroyAllWindows（）
 </div>
 
 ## 其他资源
-## 演习
+## 练习
 1. 使用[cv.addWeighted()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gafafb2513349db3bcff51f54ee5592a19)函数在文件夹中创建图像之间平滑过渡的幻灯片并放映。
