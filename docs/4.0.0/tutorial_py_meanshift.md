@@ -6,9 +6,9 @@
 
 - 我们将学习如何让利用Meanshift 和 Camshift算法用以在视频中寻找并跟踪对象
 
-译者注：Meanshift 中译均值漂移聚类， Camshift则是连续自适应Meanshift算法，
+译者注：
 
-​		以下均用英文表示这两个名词。
+Meanshift 中译均值漂移聚类， Camshift则是连续自适应Meanshift算法，<br>以下均用英文表示这两个名词。
 
 ## Meanshift
 
