@@ -35,7 +35,7 @@ OpenCV相加操作和Numpy相加操作之间存在差异。OpenCV添加是饱和
 
 通过在0->1之间改变α的值,您可以在一个图像与另一个图像之间执行很酷的过渡。
 
-在这里，我拍了两张图片将它们混合在一起。第一图像的权重为0.7，第二图像的权重为0.3。[cv.addWeighted](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gafafb2513349db3bcff51f54ee5592a19)在图像上应用以下等式。
+在这里，我拍了两张图片将它们混合在一起。第一图像的权重为0.7，第二图像的权重为0.3。[cv.addWeighted()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gafafb2513349db3bcff51f54ee5592a19)在图像上应用以下等式。
 
 <div align=center>
 <img src="/docs/4.0.0/img/function_2.png">
@@ -94,4 +94,4 @@ cv.destroyAllWindows（）
 
 ## 其他资源
 ## 演习
-1. 使用[cv.addWeighted](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gafafb2513349db3bcff51f54ee5592a19)函数在文件夹中创建图像之间平滑过渡的幻灯片并放映。
+1. 使用[cv.addWeighted()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gafafb2513349db3bcff51f54ee5592a19)函数在文件夹中创建图像之间平滑过渡的幻灯片并放映。
