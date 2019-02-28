@@ -59,7 +59,6 @@ cv.destroyAllWindows()
 <img src="/docs/4.0.0/img/blending.jpg">
 </div>
 
-<center>图片</center>
 
 ## 按位操作
 
@@ -92,8 +91,6 @@ cv.destroyAllWindows（）
 <div align=center>
 <img src="/docs/4.0.0/img/overlay.jpg">
 </div>
-
-<center>图片</center>
 
 ## 其他资源
 ## 演习
