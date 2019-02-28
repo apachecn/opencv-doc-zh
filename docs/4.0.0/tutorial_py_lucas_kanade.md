@@ -9,19 +9,125 @@
 
 ## 光流
 
-光流是
+光流是由于对象或者相机的移动引起的两个连续帧之间的时变图像的运动模式。这是一个二维的矢量场，其中，每一个矢量都是一个位移矢量用以显示从第一帧到第二帧的点的移动(位移)。
 
-(图片提供：[维基百科的光流词条](https://en.wikipedia.org/wiki/Optical_flow))
+思考下面的这张图片(图片提供：[维基百科的光流词条](https://en.wikipedia.org/wiki/Optical_flow))
 
 ![optical_flow_basic1](img/optical_flow_basic1.jpg)
 
 <center>optical flow basic image</center>
 
+这张图片展示了一个小球连续5帧的运动轨迹。箭头所展示的便是位移矢量。
+
+光流在很多领域都有着很多的应用，如：
+
+- 3D重建
+- 视频压缩
+- 视频防抖...
+
+光流基于以下假设：
+
+- 对象的像素强度在连续帧之间不变化
+- 相邻像素具有相似的运动
+
+思考第一帧的一个像素$$I(x,y,t)​$$(注意我们在这里添加了维度与时间概念。在之前我们只处理图像，所以不需要时间)。这个像素将在$$dt​$$时间后的下一帧移动$$(dx,dy)​$$的距离。因此在那些像素点不会变化且亮度也不发生改变之后，我们可以说：
+$$
+{\notag}
+I(x,y,t) = I(x+dx, y+dy, t+dt)
+$$
+然后采用泰勒级数右近似，删除常数项并同时除以$$dt​$$便最终得到了下面这个方程：
+$$
+{\notag}
+f_x u + f_y v + f_t = 0 \;
+$$
+其中：
+$$ {\notag}
+{\notag}
+f_x = \frac{\partial f}{\partial x} \; ; \; f_y = \frac{\partial f}{\partial y}\\
+u = \frac{dx}{dt} \; ; \; v = \frac{dy}{dt}
+$$
+上面的方程便是光流方程了。其中，我们可以找到$$f_x$$和$$f_y$$，它们是图像的梯度。同样，$$f_t$$是时间的梯度。但是$$(u,v)​$$我们并不知道。我们不能带着两个未知变量来求解单个方程定解。所以人们寻找到了几种方案来解决这个问题，其中一种便是Lucas-Kanade方法。
+
+### Lucas-Kanade 方法
+
+我们在之前提到过光流基于” 相邻像素具有相似的运动 “这个假设。Lucas-Kanade方法将在像素点周围建立一个3x3邻域像素系统。由于假设这九个点有着相同的运动。我们便可以在这九个点中寻找到$$(f_x, f_y, f_t)$$。所以我们的问题现在就变成了如何求解这九个方程组成的方程组，其中所求的两个变量是超定的。更好的解决方案则是利用最小二乘法拟合。下面这两个方程便是用以解决两个未知数问题的最终的解决方案。
+$$
+{\notag}
+\begin{bmatrix} u \\ v \end{bmatrix} = \begin{bmatrix} \sum_{i}{f_{x_i}}^2 & \sum_{i}{f_{x_i} f_{y_i} } \\ \sum_{i}{f_{x_i} f_{y_i}} & \sum_{i}{f_{y_i}}^2 \end{bmatrix}^{-1} \begin{bmatrix} - \sum_{i}{f_{x_i} f_{t_i}} \\ - \sum_{i}{f_{y_i} f_{t_i}} \end{bmatrix}
+$$
+(利用Harris角检测器来检查逆矩阵的相似性。这表明了角落是更好的跟踪点)
+
+所以从使用者的角度来看，这个想法是很简单的，我们给出一些用以跟踪的点，我们接收那些点的光流向量。但是这又有一些问题。到目前为止，我们只不过是在处理一些小(幅度)动作，所以当出现大(幅度)动作时便会失败。我们将使用图像金字塔来解决这个问题。
+
+## 在OpenCV里利用Lucas-Kanade方法计算光流
+
+```python
+import numpy as np
+import cv2 as cv
+
+cap = cv.VideoCapture('slow.flv')
+
+# params for ShiTomasi corner detection
+feature_params = dict( maxCorners = 100,
+                       qualityLevel = 0.3,
+                       minDistance = 7,
+                       blockSize = 7 )
+
+# Parameters for lucas kanade optical flow
+lk_params = dict( winSize  = (15,15),
+                  maxLevel = 2,
+                  criteria = (cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 0.03))
+
+# Create some random colors
+color = np.random.randint(0,255,(100,3))
+
+# Take first frame and find corners in it
+ret, old_frame = cap.read()
+old_gray = cv.cvtColor(old_frame, cv.COLOR_BGR2GRAY)
+p0 = cv.goodFeaturesToTrack(old_gray, mask = None, **feature_params)
+
+# Create a mask image for drawing purposes
+mask = np.zeros_like(old_frame)
+
+while(1):
+    ret,frame = cap.read()
+    frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+    
+    # calculate optical flow
+    p1, st, err = cv.calcOpticalFlowPyrLK(old_gray, frame_gray, p0, None, **lk_params)
+    
+    # Select good points
+    good_new = p1[st==1]
+    good_old = p0[st==1]
+    
+    # draw the tracks
+    for i,(new,old) in enumerate(zip(good_new,good_old)):
+        a,b = new.ravel()
+        c,d = old.ravel()
+        mask = cv.line(mask, (a,b),(c,d), color[i].tolist(), 2)
+        frame = cv.circle(frame,(a,b),5,color[i].tolist(),-1)
+    img = cv.add(frame,mask)
+    
+    cv.imshow('frame',img)
+    k = cv.waitKey(30) & 0xff
+    if k == 27:
+        break
+        
+    # Now update the previous frame and previous points
+    old_gray = frame_gray.copy()
+    p0 = good_new.reshape(-1,1,2)
+    
+cv.destroyAllWindows()
+cap.release()
+```
 
 
 
+![opticalflow_lk](img/opticalflow_lk.jpg)
 
-## 利用OpenCV计算密集的光流
+<center>opticalflow lk image</center>
+
+## 在OpenCV里计算稠密光流
 
 
 
@@ -64,7 +170,7 @@ cv.destroyAllWindows()
 
 结果如下图：
 
-OpenCV附带有一个关于密集光流的更加高级的样例。请看文件samples/python/opt_flow.py。
+OpenCV附带有一个关于稠密光流的更加高级的样例。请看文件samples/python/opt_flow.py。
 
 ## 其他资源
 
