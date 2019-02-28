@@ -3,11 +3,11 @@
 ## 目标
 
 * 学习对图像的几种算术运算，如加法，减法，按位运算等。
-* 您将学习以下函数：[cv.add（）](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#ga10ac1bfb180e2cfda1701d06c24fdbd6)，[cv.addWeighted（）](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gafafb2513349db3bcff51f54ee5592a19)等。
+* 您将学习以下函数：[cv.add()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#ga10ac1bfb180e2cfda1701d06c24fdbd6)，[cv.addWeighted()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gafafb2513349db3bcff51f54ee5592a19)等。
 
 ## 图像加法
 
-您可以通过OpenCV函数，[cv.add（）](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#ga10ac1bfb180e2cfda1701d06c24fdbd6)或简单地通过numpy操作将两个图像相加，res = img1 + img2。两个图像应该具有相同的深度和类型，或者第二个图像可以是标量值。
+您可以通过OpenCV函数，[cv.add()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#ga10ac1bfb180e2cfda1701d06c24fdbd6)或简单地通过numpy操作将两个图像相加，res = img1 + img2。两个图像应该具有相同的深度和类型，或者第二个图像可以是标量值。
 
 > **注意**
 OpenCV相加操作和Numpy相加操作之间存在差异。OpenCV添加是饱和操作，而Numpy添加是模运算。
