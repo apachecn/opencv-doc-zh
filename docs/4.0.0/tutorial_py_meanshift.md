@@ -12,7 +12,7 @@ Meanshift 中译均值漂移聚类， Camshift则是连续自适应Meanshift算�
 
 ## Meanshift
 
-Meanshift背后的直观感受是很简单的。想象一下，你有一堆的随机散列点(这些点可以是像直方图反向投影那样的像素分布)。同时你拥有一个小窗口(或许是一个圆圈)，并且你需要移动这个窗口直到窗口内的像素密度最大(或者说所含点的数量最多)。这在下面这幅图像中是很容易说明的：
+Meanshift背后的直观感受是很简单的。想象一下，你有一堆的随机散列点(这些点可以是像直方图反向投影那样的像素分布)。同时你拥有一个小窗口(或许是一个圆圈)，现在你需要移动这个窗口直到窗口内的像素密度最大(或者说所含点的数量最多)。这在下面这幅图像中是很容易说明的：
 
 ![meanshift_basics](img/meanshift_basics.jpg)
 
@@ -28,7 +28,7 @@ Meanshift背后的直观感受是很简单的。想象一下，你有一堆的�
 
 ### 在opencv中使用Meanshift
 
-为了在OpenCV中使用meanshift，首先我们需要设置目标，寻找其直方图以便我们可以对于反向投影每一帧的直方图用以利用Meanshift算法进行计算。我们还需要提供窗口的起始位置。对于直方图，在此时仅需考虑Hue(色调)。此外，为了避免由于低亮度引起的错误值，使用[cv2.inRange()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#ga48af0ab51e36436c5d04340e036ce981)函数丢弃低亮度值。
+为了在OpenCV中使用meanshift，首先我们需要设置目标，寻找其直方图以便我们可以对于反向投影每一帧的直方图用以利用Meanshift算法进行计算。我们还需要提供窗口的起始位置。对于直方图，在此时仅需考虑色相。此外，为了避免由于低亮度引起的错误值，使用[cv2.inRange()](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#ga48af0ab51e36436c5d04340e036ce981)函数丢弃低亮度值。
 
 ```python
 import numpy as np
