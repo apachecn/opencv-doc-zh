@@ -1,0 +1,98 @@
+# 鼠标作为画笔
+
+
+## 目标
+
+在本次会议中：
+
+* 学习用OpenCV处理鼠标事件
+
+* 你将学习这些函数：**[cv.setMouseCallback()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e "Sets mouse handler for the specified window. ")**
+
+## 简单例子
+
+这里，我们创建一个简单的程序，在图像的任何位置双击在上面画一个圆。
+
+首先我们创建一个鼠标回调函数，该函数在鼠标事件发生时执行。鼠标事件可以是与鼠标有关的任何内容，比如鼠标左键按下，左键弹起，左键双击等等。所有鼠标事件都给我们提供坐标 (x,y)。通过这个事件和位置，我们能做任何我们喜欢的事情。要列出所有可用事件，在Python终端执行以下代码：
+
+```python
+import cv2 as cv
+events = [i for i in dir(cv) if 'EVENT' in i]
+print( events )
+```
+
+创建鼠标回调函数是有特定的格式，在任何地方都一样。它仅仅是函数的功能不同。因此我们的鼠标回调函数是做一件事，就是我们双击的地方画圆。所以看下面的代码。代码注释能让你明白。
+
+```python
+import numpy as np
+import cv2 as cv
+# 鼠标回调函数
+def draw_circle(event,x,y,flags,param):
+    if event == cv.EVENT_LBUTTONDBLCLK:
+        cv.circle(img,(x,y),100,(255,0,0),-1)
+# 创建一个黑色图像，一个窗口，然后和回调绑定
+img = np.zeros((512,512,3), np.uint8)
+cv.namedWindow('image')
+cv.setMouseCallback('image',draw_circle)
+while(1):
+    cv.imshow('image',img)
+    if cv.waitKey(20) & 0xFF == 27:
+        break
+cv.destroyAllWindows()
+```
+
+## 更多高级例子
+
+现在我们寻求更好的应用。这次，我们通过拖动鼠标绘制矩形或者圆 (取决于我们选的模式)，就像在Paint程序中一样。因此我们的鼠标回调函数有两个，一个画矩形一个画圆形。这个具体的例子将有助于我们创建和理解交互式程序，像对象跟踪，图像分割等等。
+
+```python
+import numpy as np
+import cv2 as cv
+drawing = False # 如果 True 是鼠标按下
+mode = True # 如果 True，画矩形，按下‘m’切换到曲线
+ix,iy = -1,-1
+# 鼠标回调函数
+def draw_circle(event,x,y,flags,param):
+    global ix,iy,drawing,mode
+    if event == cv.EVENT_LBUTTONDOWN:
+        drawing = True
+        ix,iy = x,y
+    elif event == cv.EVENT_MOUSEMOVE:
+        if drawing == True:
+            if mode == True:
+                cv.rectangle(img,(ix,iy),(x,y),(0,255,0),-1)
+            else:
+                cv.circle(img,(x,y),5,(0,0,255),-1)
+    elif event == cv.EVENT_LBUTTONUP:
+        drawing = False
+        if mode == True:
+            cv.rectangle(img,(ix,iy),(x,y),(0,255,0),-1)
+        else:
+            cv.circle(img,(x,y),5,(0,0,255),-1)
+```
+
+下面我们用鼠标回调函数和OpenCV窗口绑定。在主循环中，我们应该设置一个‘m‘按健绑定以在矩形和圆形之间切换。
+
+```python
+img = np.zeros((512,512,3), np.uint8)
+cv.namedWindow('image')
+cv.setMouseCallback('image',draw_circle)
+while(1):··
+    cv.imshow('image',img)
+    k = cv.waitKey(1) & 0xFF
+    if k == ord('m'):
+        mode = not mode
+    elif k == 27:
+        break
+cv.destroyAllWindows()
+```
+
+## 其他资源
+
+
+## 练习
+
+1. 在我们的最后一个例子中，我们绘制了填充矩形。 您修改代码以绘制未填充的矩形。
+
+
+
