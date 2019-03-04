@@ -160,7 +160,7 @@ cap.release()
 ## 其他资源
 
 1. 关于[Camshift](https://fr.wikipedia.org/wiki/Camshift)的法语维基百科页面。(上面的两幅动图出自于此)
-2. Bradski, G.R.的 ["Real time face and object tracking as a component of a perceptual user interface"](https://ieeexplore.ieee.org/document/732882) 论文
+2. Bradski, G.R.的 “[Real time face and object tracking as a component of a perceptual user interface](https://ieeexplore.ieee.org/document/732882) “论文
 
 ## 练习
 
