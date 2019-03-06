@@ -31,4 +31,4 @@ OpenCV在全球范围内采用，拥有超过4.7万用户社区，估计下载�
 
 ## 赞助我们
 
-<img src="http://www.apachecn.org/img/about/donate.jpg" alt="微信&支付宝" />
+<img src="http://data.apachecn.org/img/about/donate.jpg" alt="微信&支付宝" />
