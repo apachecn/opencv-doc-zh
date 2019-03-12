@@ -24,6 +24,7 @@ OpenCV在全球范围内采用，拥有超过4.7万用户社区，估计下载�
 
 *   联系项目负责人
     +   [Daidai](https://github.com/daidai21)：728634974
+    +   [HLearning](https://github.com/HLearning)：544705740
     +   [片刻](https://github.com/jiangzhonglian)：529815144
 *   在我们的 [apachecn/opencv-doc-zh](https://github.com/apachecn/opencv-doc-zh) github 上提 issue.
 *   发邮件到 Email: `apachecn@163.com`.
@@ -31,4 +32,4 @@ OpenCV在全球范围内采用，拥有超过4.7万用户社区，估计下载�
 
 ## 赞助我们
 
-<img src="http://www.apachecn.org/img/about/donate.jpg" alt="微信&支付宝" />
+<img src="http://data.apachecn.org/img/about/donate.jpg" alt="微信&支付宝" />

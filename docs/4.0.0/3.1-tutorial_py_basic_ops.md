@@ -1,0 +1,180 @@
+# 图像基本操作
+
+## 目标
+
+学习：
+
+* 访问像素值并修改它们
+* 访问像素属性
+* 设置感兴趣区域（ROI）
+* 拆分和合并图像
+
+本节中的几乎所有操作都主要与Numpy有关，而不是Opencv。熟悉Numpy后才能使用Opencv编写更好的优化代码。
+
+（由于大多数代码都是单行代码，所以示例将在Python终端中显示）
+
+## 访问和修改像素值
+
+我们先加载彩色图像：
+
+```python
+>>>import numpy as np
+
+>>> import cv2 as cv
+
+>>>img = cv.imread('messi5.jpg')
+```
+您可以通过行和列坐标访问像素值。对于GRB图像，它返回一个蓝色、绿色、红色值的数组。对于灰度图像，仅返回相应的强度。
+
+```python
+>>> px = img[100,100]
+>>> print(px)
+[157 166 200]
+
+# 仅访问蓝色像素
+>>> blue = img[100,100,0]
+>>> print(blue)
+157
+```
+你也可以使用同样的方法来修改像素值
+
+```python
+>>> img[100,100] = [255,255,255]
+>>> print(img[100,100])
+[255 255 255]
+```
+
+**警告**
+
+Numpy是一个用于快速阵列计算的优化库。因此，简单地访问每个像素值并对其进行修改将非常缓慢，并不鼓励这样做。
+
+>**注意**
+>上述方法通常用于选择数组的某个区域，比如前5行和后3列。对于单个像素的访问，可以选择使用Numpy数组方法中的array.item()和array.itemset()，注意它们的返回值是一个标量。如果需要访问所有的G、R、B的值，则需要分别为所有的调用array.item()。
+
+更好的访问像素和编辑像素的方法：
+
+```python
+#访问red的值
+>>>img.item(10,10,2)
+59
+
+#修改red的值
+>>>img.itemset((10,10,2),100)
+>>>img.item(10,10,2)
+100
+```
+
+## 访问图像属性
+
+图像属性包括行数，列数和通道数，图像数据类型，像素数等。
+
+可以通过img.shape访问图像的形状。它返回一组由图像的行、列和通道组成的元组（如果图象是彩色的）：
+
+```python
+>>>print(img.shape)
+(342,548,3)
+```
+
+>**注意**
+>如果图像是灰度图像，则返回的元组仅包含行数和列数，因此它是检查加载的图像是灰度图还是彩色图的一种很好的方法。
+
+通过img.size访问图像的总像素数：
+
+```python
+>>>print(img.size)
+562248
+```
+
+图像数据类型可以由img.dtype获得：
+
+```python
+>>>print(img.dtype)
+UINT8
+```
+>**注意**
+>img.dtype在调试时非常重要，因为Opencv—Python代码中的大量错误是由无效的数据类型引起的。
+
+## 图像中的感兴趣区域
+
+有时，您将不得不处理某些图像区域。对于图像中的眼部检测，在整个图像上进行第一次面部检测。当获得面部时，我们单独选择面部区域并在其内部搜索眼部而不是搜索整个图像。它提高了准确性（因为眼睛总是在脸上：D）和性能（因为我们在一个小区域搜索）。
+
+使用Numpy索引再次获得ROI（感兴趣区域）。在这里，我选择球并将其复制到图像中的另一个区域：
+
+```python
+>>>ball = img[280:340,330:390]
+>>>img[273:333,100:160]
+```
+检查以下结果：
+
+<div align=center>
+<img src="/docs/4.0.0/img/roi.jpg">
+</div>
+
+## 拆分和合并图像通道
+
+有时您需要在B，G，R通道图像上单独工作。在这种情况下，您需要将BGR图像分割为单个通道。在其他情况下，您可能需要将这些单独的通道连接到BGR图像。您可以通过以下方式完成：
+```python
+>>>b,g,r = cv.spilt(img)
+>>>img = cv.merge((b,g,r))
+```
+或者
+
+```python
+>>>b = img[:,:,0]
+```
+假设您要将所有红色像素设置为零，则无需先拆分通道。Numpy索引更快：
+
+```python
+>>> img[:,:,2] = 0
+```
+
+**警告**
+
+cv.spilt()是一项代价高昂的操作（就时间而言）。所以只有在你需要时才这样做，否则就使用Numpy索引。
+
+## 制作图像边界（填充）
+
+如果要在图像周围创建边框，比如相框，可以使用cv.copyMakeBorder（）。但它有更多卷积运算，零填充等应用。该函数采用以下参数：
+
+* src-输入的图像
+* top,bottom,left,right-对应方向上的几个像素宽的边界
+* borderType-定义要添加的边框类型的标志。它可以是以下类型：
+>* [cv.BORDER_CONSTANT](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5aed2e4346047e265c8c5a6d0276dcd838)- 添加一个恒定的彩色边框。该值应作为下一个参数给出。
+>* [cv.BORDER_REFLECT](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5a815c8a89b7cb206dcba14d11b7560f4b)-边框将是边框元素的镜像反射，如下所示：fedcba|abcdefgh|hgfedcb
+>* [cv.BORDER_REFLECT_101](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5ab3c5a6143d8120b95005fa7105a10bb4)或者[ cv.BORDER_DEFAULT](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5afe14c13a4ea8b8e3b3ef399013dbae01)-与上面相同，但略有改动，如下所示： gfedcb | abcdefgh | gfedcba
+>* [cv.BORDER_REPLICATE ](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5aa1de4cff95e3377d6d0cbe7569bd4e9f)-最后一个元素被复制，如下所示： aaaaaa | abcdefgh | hhhhhhh
+>* [cv.BORDER_WRAP](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5a697c1b011884a7c2bdc0e5caf7955661)-无法解释，它看起来像这样： cdefgh | abcdefgh | abcdefg
+
+* value- 如果边框类型为[cv.BORDER_CONSTANT](https://docs.opencv.org/4.0.0/d2/de8/group__core__array.html#gga209f2f4869e304c82d07739337eae7c5aed2e4346047e265c8c5a6d0276dcd838)，则为边框颜色
+
+下面是一个示例代码，演示了所有这些边框类型，以便更好地理解：
+
+```python
+import cv2 as cv
+import numpy as np
+from matplotlib import pyplot as plt
+BLUE = [255,0,0]
+img1 = cv.imread('opencv-logo.png')
+replicate = cv.copyMakeBorder(img1,10,10,10,10,cv.BORDER_REPLICATE)
+reflect = cv.copyMakeBorder(img1,10,10,10,10,cv.BORDER_REFLECT)
+reflect101 = cv.copyMakeBorder(img1,10,10,10,10,cv.BORDER_REFLECT_101)
+wrap = cv.copyMakeBorder(img1,10,10,10,10,cv.BORDER_WRAP)
+constant= cv.copyMakeBorder(img1,10,10,10,10,cv.BORDER_CONSTANT,value=BLUE)
+plt.subplot(231),plt.imshow(img1,'gray'),plt.title('ORIGINAL')
+plt.subplot(232),plt.imshow(replicate,'gray'),plt.title('REPLICATE')
+plt.subplot(233),plt.imshow(reflect,'gray'),plt.title('REFLECT')
+plt.subplot(234),plt.imshow(reflect101,'gray'),plt.title('REFLECT_101')
+plt.subplot(235),plt.imshow(wrap,'gray'),plt.title('WRAP')
+plt.subplot(236),plt.imshow(constant,'gray'),plt.title('CONSTANT')
+plt.show()
+```
+
+请参阅下面的结果。（图像是通过matplotlib展示的。因此红色和蓝色通道将互换）：
+
+<div align=center>
+<img src="/docs/4.0.0/img/border.jpg">
+</div>
+
+## 其他资源
+
+## 练习

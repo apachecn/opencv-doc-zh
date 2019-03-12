@@ -1,0 +1,61 @@
+# 作为调色板的跟踪栏
+
+
+## 目标
+
+
+* 学习将轨迹栏绑定到OpenCV窗口。
+
+* 你将学习这些函数：**[cv.getTrackbarPos()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga122632e9e91b9ec06943472c55d9cda8 "Returns the trackbar position. ")**, **[cv.createTrackbar()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#gaf78d2155d30b728fc413803745b67a9b "Creates a trackbar and attaches it to the specified window. ")** 等等。
+
+
+## 代码演示
+
+这里，我们将创建简单的程序，显示你指定颜色。 你有一个显示颜色的窗口和三个轨迹栏，用来指定 B，G，R 颜色的。你可以滑动轨迹栏改变窗口的颜色。默认情况下，初始颜色被设置为黑色。
+Here we will create a simple application which shows the color you specify. You have a window which shows the color and three trackbars to specify each of B,G,R colors. You slide the trackbar and correspondingly window color changes. By default, initial color will be set to Black.
+
+对于 **[cv.getTrackbarPos()](https://docs.opencv.org/4.0.0/d7/dfc/group__highgui.html#ga122632e9e91b9ec06943472c55d9cda8 "Returns the trackbar position. ")** 函数，第一个参数是轨迹栏名字，第二那个是被附上窗口名字，第三个参数是默认值，第四个是最大值，第五个是回调函数，滑条改变所执行的函数。这个回调函数也有一个默认参数，表示轨迹栏位置。我们并不关心函数做什么事，所以我们简单提一下。
+
+轨迹栏的另一个重要应用是用作按钮或者开关。OpenCV，默认情况，是没有按钮功能的。因此我们能用轨迹栏做一些这样的功能。在我们的程序中，我门创建了一个开关，其中程序只会在开关打开时有效，否则屏幕始终是黑色。
+
+```python
+import numpy as np
+import cv2 as cv
+def nothing(x):
+    pass
+# 创建一个黑色图像，一个窗口
+img = np.zeros((300,512,3), np.uint8)
+cv.namedWindow('image')
+# 创建一个改变颜色的轨迹栏
+cv.createTrackbar('R','image',0,255,nothing)
+cv.createTrackbar('G','image',0,255,nothing)
+cv.createTrackbar('B','image',0,255,nothing)
+# 创建一个开关用来启用和关闭功能的
+switch = '0 : OFF \n1 : ON'
+cv.createTrackbar(switch, 'image',0,1,nothing)
+while(1):
+    cv.imshow('image',img)
+    k = cv.waitKey(1) & 0xFF
+    if k == 27:
+        break
+    # get current positions of four trackbars
+    r = cv.getTrackbarPos('R','image')
+    g = cv.getTrackbarPos('G','image')
+    b = cv.getTrackbarPos('B','image')
+    s = cv.getTrackbarPos(switch,'image')
+    if s == 0:
+        img[:] = 0
+    else:
+        img[:] = [b,g,r]
+cv.destroyAllWindows()
+```
+
+程序的截图如下：
+
+![image](img/trackbar_screenshot.jpg)
+
+
+## 练习
+
+
+1. 创建一个Paint程序，具有可调节颜色和笔刷半径的轨迹栏。关于绘画，参考之前的鼠标事件教程。
