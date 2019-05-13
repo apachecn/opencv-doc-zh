@@ -1,0 +1,112 @@
+# 使用SVM进行手写数据识别
+
+## 目标
+在本章
+* 我们将再次学习手写数据OCR，但是，使用SVM而不是kNN。
+
+## 手写数字的OCR
+在kNN中，我们直接使用像素强度作为特征向量。这次我们将使用[方向梯度直方图](http://en.wikipedia.org/wiki/Histogram_of_oriented_gradients)（HOG）作为特征向量。
+
+在找HOG之前，我们使用其二阶矩来校正图像。所以我们首先定义一个函数**deskew()**，它取一个数字图像并对其进行校正。下面是deskew()函数：
+```python
+def deskew(img):
+    m = cv.moments(img)
+    if abs(m['mu02']) < 1e-2:
+        return img.copy()
+    skew = m['mu11']/m['mu02']
+    M = np.float32([[1, skew, -0.5*SZ*skew], [0, 1, 0]])
+    img = cv.warpAffine(img,M,(SZ, SZ),flags=affine_flags)
+    return img
+```
+下图展示了应用于零图像的上述矫正函数。左图是原始图像，右图是矫正后的图像。
+<div align=center>
+<img src="img/deskew.jpg"> </br>
+<b>图像</b>
+</div>
+接下来，我们必须找到每个单元的HOG描述符。为此，我们在X和Y方向找到每个单元的Sobel导数。然后，在每个像素处找到它们的大小和梯度方向。该梯度被量化为0~16间的整数。将此图像分为四个子方块。对于每个子方块，计算使用大小加权的方向的直方图（16 bins）。因此，每个子方块都会给你一个有16个值的向量。四个这样的向量（四个子方块）一起给出了有着64个值的特征向量。这是我们用来训练数据的特征向量。
+
+```python
+def hog(img):
+    gx = cv.Sobel(img, cv.CV_32F, 1, 0)
+    gy = cv.Sobel(img, cv.CV_32F, 0, 1)
+    mag, ang = cv.cartToPolar(gx, gy)
+    bins = np.int32(bin_n*ang/(2*np.pi))    # quantizing binvalues in (0...16)
+    bin_cells = bins[:10,:10], bins[10:,:10], bins[:10,10:], bins[10:,10:]
+    mag_cells = mag[:10,:10], mag[10:,:10], mag[:10,10:], mag[10:,10:]
+    hists = [np.bincount(b.ravel(), m.ravel(), bin_n) for b, m in zip(bin_cells, mag_cells)]
+    hist = np.hstack(hists)     # hist is a 64 bit vector
+    return hist
+```
+最后，与先前一样，我们首先将大数据集拆分为独立的单元。对每个数字，保留250个单元用于训练数据，剩余的250个数据被留下来用于测试。完整代码如下，你也可以从[这里](https://github.com/opencv/opencv/tree/master/samples/python/tutorial_code/ml/py_svm_opencv/hogsvm.py)下载：
+```python
+#!/usr/bin/env python
+
+import cv2 as cv
+import numpy as np
+
+SZ=20
+bin_n = 16 # Number of bins
+
+affine_flags = cv.WARP_INVERSE_MAP|cv.INTER_LINEAR
+
+def deskew(img):
+    m = cv.moments(img)
+    if abs(m['mu02']) < 1e-2:
+        return img.copy()
+    skew = m['mu11']/m['mu02']
+    M = np.float32([[1, skew, -0.5*SZ*skew], [0, 1, 0]])
+    img = cv.warpAffine(img,M,(SZ, SZ),flags=affine_flags)
+    return img
+    
+def hog(img):
+    gx = cv.Sobel(img, cv.CV_32F, 1, 0)
+    gy = cv.Sobel(img, cv.CV_32F, 0, 1)
+    mag, ang = cv.cartToPolar(gx, gy)
+    bins = np.int32(bin_n*ang/(2*np.pi))    # quantizing binvalues in (0...16)
+    bin_cells = bins[:10,:10], bins[10:,:10], bins[:10,10:], bins[10:,10:]
+    mag_cells = mag[:10,:10], mag[10:,:10], mag[:10,10:], mag[10:,10:]
+    hists = [np.bincount(b.ravel(), m.ravel(), bin_n) for b, m in zip(bin_cells, mag_cells)]
+    hist = np.hstack(hists)     # hist is a 64 bit vector
+    return hist
+    
+img = cv.imread('digits.png',0)
+if img is None:
+    raise Exception("we need the digits.png image from samples/data here !")
+    
+cells = [np.hsplit(row,100) for row in np.vsplit(img,50)]
+
+# First half is trainData, remaining is testData
+train_cells = [ i[:50] for i in cells ]
+test_cells = [ i[50:] for i in cells]
+
+deskewed = [list(map(deskew,row)) for row in train_cells]
+hogdata = [list(map(hog,row)) for row in deskewed]
+trainData = np.float32(hogdata).reshape(-1,64)
+responses = np.repeat(np.arange(10),250)[:,np.newaxis]
+
+svm = cv.ml.SVM_create()
+svm.setKernel(cv.ml.SVM_LINEAR)
+svm.setType(cv.ml.SVM_C_SVC)
+svm.setC(2.67)
+svm.setGamma(5.383)
+
+svm.train(trainData, cv.ml.ROW_SAMPLE, responses)
+svm.save('svm_data.dat')
+
+deskewed = [list(map(deskew,row)) for row in test_cells]
+hogdata = [list(map(hog,row)) for row in deskewed]
+testData = np.float32(hogdata).reshape(-1,bin_n*4)
+result = svm.predict(testData)[1]
+
+mask = result==responses
+correct = np.count_nonzero(mask)
+print(correct*100.0/result.size)
+
+```
+这种特殊技术给了我近94％的准确率。你可以尝试为SVM的各种参数设置不同的值，以检查是否可以获得更高的精度。或者你也可以阅读该领域的技术论文并尝试实现它们。
+
+## 额外资源
+1. [方向梯度直方图视频](https://www.youtube.com/watch?v=0Zib1YEE4LU)
+
+## 练习
+1. OpenCV 示例里有个 digits.py，它对上述方法稍微做了改进，并获得了更好的效果。它还包含参考资料。阅读并理解它。
