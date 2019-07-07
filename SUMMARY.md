@@ -1,17 +1,17 @@
-+   1. 简介
++   1\. 简介
     +   [OpenCV-Python教程简介](docs/4.0.0/1.1-tutorial_py_intro.md)
     +   [在Ubuntu系统中安装OpenCV—Python](docs/4.0.0/1.2-tutorial_py_setup_in_ubuntu.md)
-+   2. GUI功能
++   2\. GUI功能
     +   [图像入门](docs/4.0.0/2.1-tutorial_py_image_display.md)
     +   [视频入门](docs/4.0.0/2.2-tutorial_py_video_display.md)
     +   [绘图功能](docs/4.0.0/2.3-tutorial_py_drawing_functions.md)
     +   [鼠标作为画笔](docs/4.0.0/2.4-tutorial_py_mouse_handling.md)
     +   [作为调色板的跟踪栏](docs/4.0.0/2.5-tutorial_py_trackbar.md)
-+   3. 核心操作
++   3\. 核心操作
     +   [图像基本操作](docs/4.0.0/3.1-tutorial_py_basic_ops.md)
     +   [图像的算术运算](docs/4.0.0/3.2-tutorial_py_image_arithmetics.md)
     +   [性能测量和改进技术](docs/4.0.0/3.3-tutorial_py_optimization.md)
-+   4. 图像处理
++   4\. 图像处理
     +   [更改颜色空间](docs/4.0.0/4.1-tutorial_py_colorspaces.md)
     +   [图像的几何变换](docs/4.0.0/4.2-tutorial_py_geometric_transformations.md)
     +   [图像阈值](docs/4.0.0/4.3-tutorial_py_thresholding.md)
@@ -28,7 +28,7 @@
     +   [霍夫圆变换](docs/4.0.0/4.14.md)
     +   [基于分水岭算法的图像分割](docs/4.0.0/4.15.md)
     +   [基于GrabCut算法的交互式前景提取](docs/4.0.0/4.16.md)
-+   5. 特征检测和描述
++   5\. 特征检测和描述
     +   [理解特征](docs/4.0.0/5.1-tutorial_py_features_meaning.md)
     +   [哈里斯角点检测](docs/4.0.0/5.2.md)
     +   [Shi-Tomasi角落探测器＆amp;跟踪的好功能](docs/4.0.0/5.3.md)
@@ -39,16 +39,16 @@
     +   [ORB（定向快速和轮换简介）](docs/4.0.0/5.8.md)
     +   [特征匹配](docs/4.0.0/5.9.md)
     +   [特征匹配+ Homography查找对象](docs/4.0.0/5.10.md)
-+   6. 视频分析
++   6\. 视频分析
     +   [Meanshift和Camshift](docs/4.0.0/6.1-tutorial_py_meanshift.md)
     +   [光流](docs/4.0.0/6.2-tutorial_py_lucas_kanade.md)
     +   [背景减法](docs/4.0.0/6.3-tutorial_py_bg_subtraction.md)
-+   7. 相机校准和3D重建
++   7\. 相机校准和3D重建
     +   [相机校准](docs/4.0.0/7.1-tutorial_py_calibration.md)
     +   [姿势估计](docs/4.0.0/7.2-tutorial_py_pose.md)
     +   [线性几何](docs/4.0.0/7.3-tutorial_py_epipolar_geometry.md)
     +   [立体图像的深度图](docs/4.0.0/7.4-tutorial_py_depthmap.md)
-+   8. 机器学习
++   8\. 机器学习
     +   [K-最近邻算法](docs/4.0.0/8.1-tutorial_py_knn_index.md)
     +   [理解 K-最近邻算法](docs/4.0.0/8.1.1-tutorial_py_knn_understanding.md)
     +   [使用 kNN 进行手写识别](docs/4.0.0/8.1.2-tutorial_py_knn_opencv.md)
@@ -58,11 +58,11 @@
     +   [K-Means聚类](docs/4.0.0/8.3-tutorial_py_kmeans_index.md)
     +   [理解K-Means聚类](docs/4.0.0/8.3.1-tutorial_py_kmeans_understanding.md)
     +   [OpenCV中的K-Means聚类](docs/4.0.0/8.3.2-tutorial_py_kmeans_opencv.md)
-+   9. 计算摄影
++   9\. 计算摄影
     +   [图像去噪](docs/4.0.0/9.1.md)
     +   [图像修复](docs/4.0.0/9.2.md)
     +   [高动态范围（HDR）](docs/4.0.0/9.3.md)
-+   10. 目标检测
++   10\. 目标检测
     +   [使用Haar Cascades进行人脸检测](docs/4.0.0/10.1-tutorial_py_face_detection.md)
-+   11. OpenCV-Python绑定
++   11\. OpenCV-Python绑定
     +   [如何生成OpenCV-Python绑定？](docs/4.0.0/11.1-tutorial_py_OpenCV-Python.md)
