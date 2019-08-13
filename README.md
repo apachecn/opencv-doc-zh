@@ -28,12 +28,12 @@ OpenCV在全球范围内采用，拥有超过4.7万用户社区，估计下载�
 ## 建议反馈
 
 *   联系项目负责人
-    +   [Daidai](https://github.com/daidai21)：728634974
-    +   [HLearning](https://github.com/HLearning)：544705740
-    +   [片刻](https://github.com/jiangzhonglian)：529815144
+    +   [@Daidai](https://github.com/daidai21)
+    +   [@lyrich](https://github.com/lyrich)
+    +   [@片刻](https://github.com/jiangzhonglian)
 *   在我们的 [apachecn/opencv-doc-zh](https://github.com/apachecn/opencv-doc-zh) github 上提 issue.
 *   发邮件到 Email: `apachecn@163.com`.
-*   在我们的 [组织学习交流群](http://www.apachecn.org/organization/348.html) 中联系群主/管理员即可.
+*   在我们的 [QQ群-搜索: 交流方式](https://github.com/apachecn/home) 中联系群主/管理员即可.
 
 ## 赞助我们
 
