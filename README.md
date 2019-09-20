@@ -9,12 +9,12 @@
 > 欢迎任何人参与和完善：一个人可以走的很快，但是一群人却可以走的更远。
 
 ```
-OpenCV（开源计算机视觉库）是在BSD许可下发布的，因此它可以免费用于学术和商业用途。
-它具有C++，Python和Java接口，支持Windows，Linux，Mac OS，iOS和Android。
-OpenCV专为提高计算效率而设计，专注于实时应用。该库以优化的 C/C++ 编写，可以利用多核处理。
-通过OpenCL启用，它可以利用底层异构计算平台的硬件加速。
+OpenCV（开源计算机视觉库）是在 BSD 许可下发布的，因此它可以免费用于学术和商业用途。
+它具有 C++，Python 和 Java 接口，支持 Windows，Linux，Mac OS，iOS 和 Android。
+OpenCV 专为提高计算效率而设计，专注于实时应用。该库以优化的 C/C++ 编写，可以利用多核处理。
+通过 OpenCL 启用，它可以利用底层异构计算平台的硬件加速。
 
-OpenCV在全球范围内采用，拥有超过4.7万用户社区，估计下载量超过1400万。
+OpenCV 在全球范围内采用，拥有超过 4.7 万用户社区，估计下载量超过 1400 万。
 用途范围从交互式艺术，到地雷检查，网上拼接地图或高级机器人。
 ```
 
@@ -31,7 +31,7 @@ OpenCV在全球范围内采用，拥有超过4.7万用户社区，估计下载�
     +   [@片刻](https://github.com/jiangzhonglian)
 *   在我们的 [apachecn/opencv-doc-zh](https://github.com/apachecn/opencv-doc-zh) github 上提 issue.
 *   发邮件到 Email: `apachecn@163.com`.
-*   在我们的 [QQ群-搜索: 交流方式](https://github.com/apachecn/home) 中联系群主/管理员即可.
+*   在我们的 [QQ 群-搜索: 交流方式](https://github.com/apachecn/home) 中联系群主/管理员即可.
 
 ## 赞助我们
 
