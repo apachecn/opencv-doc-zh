@@ -41,9 +41,9 @@
 	+ [4.10 直方图](https://docs.opencv.org/4.0.0/de/db2/tutorial_py_table_of_contents_histograms.html)
 	+ [4.11 图像转换](https://docs.opencv.org/4.0.0/dd/dc4/tutorial_py_table_of_contents_transforms.html)
 	+ [4.12 模板匹配](https://docs.opencv.org/4.0.0/d4/dc6/tutorial_py_template_matching.html)
-	+ [4.13 霍夫线变换](https://docs.opencv.org/4.0.0/d6/d10/tutorial_py_houghlines.html)
-	+ [4.14 霍夫圆变换](https://docs.opencv.org/4.0.0/da/d53/tutorial_py_houghcircles.html)
-	+ [4.15 基于分水岭算法的图像分割](https://docs.opencv.org/4.0.0/d3/db4/tutorial_py_watershed.html)
+	+ [4.13 霍夫线变换](https://docs.opencv.org/4.0.0/d6/d10/tutorial_py_hough_line.html)
+	+ [4.14 霍夫圆变换](https://docs.opencv.org/4.0.0/da/d53/tutorial_py_hough_circle.html)
+	+ [4.15 基于分水岭算法的图像分割](https://docs.opencv.org/4.0.0/d3/db4/tutorial_py_watershed_segmentation.html)
 	+ [基于GrabCut算法的交互式前景提取](https://docs.opencv.org/4.0.0/d8/d83/tutorial_py_grabcut.html)
 + 5.特征检测和描述
 	+ [5.1 了解功能](https://docs.opencv.org/4.0.0/df/d54/tutorial_py_features_meaning.html)
