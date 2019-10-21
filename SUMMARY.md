@@ -1,7 +1,7 @@
 +   1\. 简介
-    +   [OpenCV-Python教程简介](docs/4.0.0/1.1-tutorial_py_intro.md)
-    +   [在Ubuntu系统中安装OpenCV—Python](docs/4.0.0/1.2-tutorial_py_setup_in_ubuntu.md)
-+   2\. GUI功能
+    +   [OpenCV-Python 教程简介](docs/4.0.0/1.1-tutorial_py_intro.md)
+    +   [在 Ubuntu 系统中安装 OpenCV—Python](docs/4.0.0/1.2-tutorial_py_setup_in_ubuntu.md)
++   2\. GUI 功能
     +   [图像入门](docs/4.0.0/2.1-tutorial_py_image_display.md)
     +   [视频入门](docs/4.0.0/2.2-tutorial_py_video_display.md)
     +   [绘图功能](docs/4.0.0/2.3-tutorial_py_drawing_functions.md)
@@ -40,10 +40,10 @@
     +   [特征匹配](docs/4.0.0/5.9-tutorial_py_matcher.md)
     +   [特征匹配+ Homography查找对象](docs/4.0.0/│  5.10-tutorial_py_feature_homography.md)
 +   6\. 视频分析
-    +   [Meanshift和Camshift](docs/4.0.0/6.1-tutorial_py_meanshift.md)
+    +   [Meanshift 和 Camshift](docs/4.0.0/6.1-tutorial_py_meanshift.md)
     +   [光流](docs/4.0.0/6.2-tutorial_py_lucas_kanade.md)
     +   [背景减法](docs/4.0.0/6.3-tutorial_py_bg_subtraction.md)
-+   7\. 相机校准和3D重建
++   7\. 相机校准和 3D 重建
     +   [相机校准](docs/4.0.0/7.1-tutorial_py_calibration.md)
     +   [姿势估计](docs/4.0.0/7.2-tutorial_py_pose.md)
     +   [线性几何](docs/4.0.0/7.3-tutorial_py_epipolar_geometry.md)
@@ -53,16 +53,16 @@
     +   [理解 K-最近邻算法](docs/4.0.0/8.1.1-tutorial_py_knn_understanding.md)
     +   [使用 kNN 进行手写识别](docs/4.0.0/8.1.2-tutorial_py_knn_opencv.md)
     +   [支持向量机（Support Vector Machine, SVM）](docs/4.0.0/8.2-tutorial_py_svm_index.md)
-    +   [理解SVM](docs/4.0.0/8.2.1-tutorial_py_svm_basics.md)
-    +   [使用SVM进行手写数据识别](docs/4.0.0/8.2.2-tutorial_py_svm_opencv.md)
-    +   [K-Means聚类](docs/4.0.0/8.3-tutorial_py_kmeans_index.md)
-    +   [理解K-Means聚类](docs/4.0.0/8.3.1-tutorial_py_kmeans_understanding.md)
-    +   [OpenCV中的K-Means聚类](docs/4.0.0/8.3.2-tutorial_py_kmeans_opencv.md)
+    +   [理解 SVM](docs/4.0.0/8.2.1-tutorial_py_svm_basics.md)
+    +   [使用 SVM 进行手写数据识别](docs/4.0.0/8.2.2-tutorial_py_svm_opencv.md)
+    +   [K-Means 聚类](docs/4.0.0/8.3-tutorial_py_kmeans_index.md)
+    +   [理解 K-Means 聚类](docs/4.0.0/8.3.1-tutorial_py_kmeans_understanding.md)
+    +   [OpenCV 中的 K-Means 聚类](docs/4.0.0/8.3.2-tutorial_py_kmeans_opencv.md)
 +   9\. 计算摄影
     +   [图像去噪](docs/4.0.0/9.1.md)
     +   [图像修复](docs/4.0.0/9.2.md)
     +   [高动态范围（HDR）](docs/4.0.0/9.3.md)
 +   10\. 目标检测
-    +   [使用Haar Cascades进行人脸检测](docs/4.0.0/10.1-tutorial_py_face_detection.md)
-+   11\. OpenCV-Python绑定
-    +   [如何生成OpenCV-Python绑定？](docs/4.0.0/11.1-tutorial_py_OpenCV-Python.md)
+    +   [使用 Haar Cascades 进行人脸检测](docs/4.0.0/10.1-tutorial_py_face_detection.md)
++   11\. OpenCV-Python 绑定
+    +   [如何生成 OpenCV-Python 绑定？](docs/4.0.0/11.1-tutorial_py_OpenCV-Python.md)

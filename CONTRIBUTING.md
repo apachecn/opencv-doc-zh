@@ -16,9 +16,9 @@
 ## 章节列表
 
 + 1.简介
-	+ [1.1 OpenCV-Python教程简介](https://docs.opencv.org/4.0.0/d0/de3/tutorial_py_intro.html)
-	+ [1.2 安装OpenCV—Python](https://docs.opencv.org/4.0.0/d2/de6/tutorial_py_setup_in_ubuntu.html)
-+ 2.GUI功能
+	+ [1.1 OpenCV-Python 教程简介](https://docs.opencv.org/4.0.0/d0/de3/tutorial_py_intro.html)
+	+ [1.2 安装 OpenCV—Python](https://docs.opencv.org/4.0.0/d2/de6/tutorial_py_setup_in_ubuntu.html)
++ 2.GUI 功能
 	+ [2.1 图像入门](https://docs.opencv.org/4.0.0/dc/d2e/tutorial_py_image_display.html)
 	+ [2.2 视频入门](https://docs.opencv.org/4.0.0/dd/d43/tutorial_py_video_display.html)
 	+ [2.3 绘图功能](https://docs.opencv.org/4.0.0/dc/da5/tutorial_py_drawing_functions.html)
@@ -35,7 +35,7 @@
 	+ [4.4 平滑图像](https://docs.opencv.org/4.0.0/d4/d13/tutorial_py_filtering.html)
 	+ [4.5 形态转换](https://docs.opencv.org/4.0.0/d9/d61/tutorial_py_morphological_ops.html)
 	+ [4.6 图像梯度](https://docs.opencv.org/4.0.0/d5/d0f/tutorial_py_gradients.html)
-	+ [4.7 Canny边缘检测](https://docs.opencv.org/4.0.0/da/d22/tutorial_py_canny.html)
+	+ [4.7 Canny 边缘检测](https://docs.opencv.org/4.0.0/da/d22/tutorial_py_canny.html)
 	+ [4.8 影像金字塔](https://docs.opencv.org/4.0.0/dc/dff/tutorial_py_pyramids.html)
 	+ [4.9 轮廓](https://docs.opencv.org/4.0.0/d3/d05/tutorial_py_contours.html)
 	+ [4.10 直方图](https://docs.opencv.org/4.0.0/de/db2/tutorial_py_histograms.html)
@@ -47,20 +47,20 @@
 	+ [基于GrabCut算法的交互式前景提取](https://docs.opencv.org/4.0.0/d8/d83/tutorial_py_grabcut.html)
 + 5.特征检测和描述
 	+ [5.1 了解功能](https://docs.opencv.org/4.0.0/df/d54/tutorial_py_features_meaning.html)
-	+ [5.2 Harris角点检测](https://docs.opencv.org/4.0.0/dc/d0d/tutorial_py_features_harris.html)
-	+ [5.3 Shi-Tomasi角点检测和追踪的良好特征](https://docs.opencv.org/4.0.0/d4/d8c/tutorial_py_shi_tomasi.html)
-	+ [5.4 SIFT简介（尺度不变特征变换）](https://docs.opencv.org/4.0.0/da/df5/tutorial_py_sift_intro.html)
-	+ [5.5 SURF简介（加速鲁棒特性）](https://docs.opencv.org/4.0.0/df/dd2/tutorial_py_surf_intro.html)
-	+ [5.6 角点检测的FAST算法](https://docs.opencv.org/4.0.0/df/d0c/tutorial_py_fast.html)
+	+ [5.2 Harris 角点检测](https://docs.opencv.org/4.0.0/dc/d0d/tutorial_py_features_harris.html)
+	+ [5.3 Shi-Tomasi 角点检测和追踪的良好特征](https://docs.opencv.org/4.0.0/d4/d8c/tutorial_py_shi_tomasi.html)
+	+ [5.4 SIFT 简介（尺度不变特征变换）](https://docs.opencv.org/4.0.0/da/df5/tutorial_py_sift_intro.html)
+	+ [5.5 SURF 简介（加速鲁棒特性）](https://docs.opencv.org/4.0.0/df/dd2/tutorial_py_surf_intro.html)
+	+ [5.6 角点检测的 FAST 算法](https://docs.opencv.org/4.0.0/df/d0c/tutorial_py_fast.html)
 	+ [5.7 简介（二进制鲁棒独立基本特征）](https://docs.opencv.org/4.0.0/dc/d7d/tutorial_py_brief.html)
 	+ [5.8 ORB（定向快速和快速旋转）](https://docs.opencv.org/4.0.0/d1/d89/tutorial_py_orb.html)
 	+ [5.9 特征匹配](https://docs.opencv.org/4.0.0/dc/dc3/tutorial_py_matcher.html)
-	+ [5.10 特征匹配+ Homography查找对象](https://docs.opencv.org/4.0.0/d1/de0/tutorial_py_feature_homography.html)
+	+ [5.10 特征匹配+ Homography 查找对象](https://docs.opencv.org/4.0.0/d1/de0/tutorial_py_feature_homography.html)
 + 6.视频分析
-	+ [6.1 Meanshift和Camshift](https://docs.opencv.org/4.0.0/db/df8/tutorial_py_meanshift.html)
+	+ [6.1 Meanshift 和 Camshift](https://docs.opencv.org/4.0.0/db/df8/tutorial_py_meanshift.html)
 	+ [6.2 光流](https://docs.opencv.org/4.0.0/d7/d8b/tutorial_py_lucas_kanade.html)
 	+ [6.3 背景减法](https://docs.opencv.org/4.0.0/db/d5c/tutorial_py_bg_subtraction.html)
-+ 7.相机校准和3D重建
++ 7.相机校准和 3D 重建
 	+ [7.1 相机校准](https://docs.opencv.org/4.0.0/dc/dbb/tutorial_py_calibration.html)
 	+ [7.2 姿势估计](https://docs.opencv.org/4.0.0/d7/d53/tutorial_py_pose.html)
 	+ [7.3 极线几何](https://docs.opencv.org/4.0.0/da/de9/tutorial_py_epipolar_geometry.html)
@@ -68,15 +68,15 @@
 + 8.机器学习
 	+ [8.1 K-最近邻](https://docs.opencv.org/4.0.0/d0/d72/tutorial_py_knn_index.html)
 	+ [8.2 支持向量机（SVM）](https://docs.opencv.org/4.0.0/d3/d02/tutorial_py_svm_index.html)
-	+ [8.3 K-Means聚类](https://docs.opencv.org/4.0.0/d9/d70/tutorial_py_kmeans_index.html)
+	+ [8.3 K-Means 聚类](https://docs.opencv.org/4.0.0/d9/d70/tutorial_py_kmeans_index.html)
 + 9.计算摄影
 	+ [9.1 图像去噪](https://docs.opencv.org/4.0.0/d5/d69/tutorial_py_non_local_means.html)
 	+ [9.2 图像修复](https://docs.opencv.org/4.0.0/df/d3d/tutorial_py_inpainting.html)
 	+ [9.3 高动态范围（HDR）](https://docs.opencv.org/4.0.0/d2/df0/tutorial_py_hdr.html)
 + 10.目标检测
-	+ [10.1 使用Haar Cascades进行人脸检测](https://docs.opencv.org/4.0.0/d7/d8b/tutorial_py_face_detection.html)
-+ 11.OpenCV-Python绑定
-	+ [11.1 OpenCV-Python绑定如何工作？](https://docs.opencv.org/4.0.0/da/d49/tutorial_py_bindings_basics.html)
+	+ [10.1 使用 Haar Cascades 进行人脸检测](https://docs.opencv.org/4.0.0/d7/d8b/tutorial_py_face_detection.html)
++ 11.OpenCV-Python 绑定
+	+ [11.1 OpenCV-Python 绑定如何工作？](https://docs.opencv.org/4.0.0/da/d49/tutorial_py_bindings_basics.html)
 
 ## 流程
 
