@@ -30,7 +30,7 @@
     +   [基于GrabCut算法的交互式前景提取](docs/4.0.0/4.16-tutorial_py_grabcut.md)
 +   5\. 特征检测和描述
     +   [理解特征](docs/4.0.0/5.1-tutorial_py_features_meaning.md)
-    +   [哈里斯角点检测](docs/4.0.0/5.2-tutorial_py_harris.md.md)
+    +   [哈里斯角点检测](docs/4.0.0/5.2-tutorial_py_harris.md)
     +   [Shi-Tomasi角落探测器＆amp;跟踪的好功能](docs/4.0.0/5.3-tutorial_py_shi_tomasi.md)
     +   [SIFT简介（尺度不变特征变换）](docs/4.0.0/5.4-tutorial_py_sift_intro.md)
     +   [SURF简介（加速鲁棒特性）](docs/4.0.0/5.5-tutorial_py_surf_intro.md)
@@ -38,7 +38,7 @@
     +   [简介（二进制鲁棒独立基本特征）](docs/4.0.0/5.7-tutorial_py_brief.md)
     +   [ORB（定向快速和轮换简介）](docs/4.0.0/5.8-tutorial_py_orb.md)
     +   [特征匹配](docs/4.0.0/5.9-tutorial_py_matcher.md)
-    +   [特征匹配+ Homography查找对象](docs/4.0.0/│  5.10-tutorial_py_feature_homography.md)
+    +   [特征匹配+ Homography查找对象](docs/4.0.0/5.10-tutorial_py_feature_homography.md)
 +   6\. 视频分析
     +   [Meanshift 和 Camshift](docs/4.0.0/6.1-tutorial_py_meanshift.md)
     +   [光流](docs/4.0.0/6.2-tutorial_py_lucas_kanade.md)
@@ -59,9 +59,9 @@
     +   [理解 K-Means 聚类](docs/4.0.0/8.3.1-tutorial_py_kmeans_understanding.md)
     +   [OpenCV 中的 K-Means 聚类](docs/4.0.0/8.3.2-tutorial_py_kmeans_opencv.md)
 +   9\. 计算摄影
-    +   [图像去噪](docs/4.0.0/9.1.md)
-    +   [图像修复](docs/4.0.0/9.2.md)
-    +   [高动态范围（HDR）](docs/4.0.0/9.3.md)
+    +   [图像去噪](docs/4.0.0/9.1-tutorial_py_non_local_means.md)
+    +   [图像修复](docs/4.0.0/9.2-tutorial_py_inpainting.md)
+    +   [高动态范围（HDR）](docs/4.0.0/9.3-tutorial_py_hdr.md)
 +   10\. 目标检测
     +   [使用 Haar Cascades 进行人脸检测](docs/4.0.0/10.1-tutorial_py_face_detection.md)
 +   11\. OpenCV-Python 绑定
