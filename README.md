@@ -35,6 +35,14 @@ OpenCV 在全球范围内采用，拥有超过 4.7 万用户社区，估计下�
 
 ## 下载
 
+### PYPI
+
+```
+pip install opencv-doc-zh
+opencv-doc-zh <port>
+# 访问 http://localhost:{port} 查看文档
+```
+
 ### NPM
 
 ```
