@@ -33,6 +33,16 @@ OpenCV 在全球范围内采用，拥有超过 4.7 万用户社区，估计下�
 *   发邮件到 Email: `apachecn@163.com`.
 *   在我们的 [QQ 群-搜索: 交流方式](https://github.com/apachecn/home) 中联系群主/管理员即可.
 
+## 下载
+
+### NPM
+
+```
+npm install -g opencv-doc-zh
+opencv-doc-zh <port>
+# 访问 http://localhost:{port} 查看文档
+```
+
 ## 赞助我们
 
 <img src="http://data.apachecn.org/img/about/donate.jpg" alt="微信&支付宝" />
