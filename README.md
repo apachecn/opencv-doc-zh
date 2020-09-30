@@ -35,6 +35,14 @@ OpenCV 在全球范围内采用，拥有超过 4.7 万用户社区，估计下�
 
 ## 下载
 
+### Docker
+
+```
+docker pull apachecn0/opencv-doc-zh
+docker run -tid -p <port>:80 apachecn0/opencv-doc-zh
+# 访问 http://localhost:{port} 查看文档
+```
+
 ### PYPI
 
 ```
