@@ -21,7 +21,7 @@ OpenCV 在全球范围内采用，拥有超过 4.7 万用户社区，估计下�
 +   [在线阅读](http://opencv.apachecn.org)
 +   [在线阅读（Gitee）](https://apachecn.gitee.io/opencv-doc-zh/)
 +   项目负责人及贡献者：请见各个版本的首页
-+   [ApacheCN 机器学习交流群 629470233](http://shang.qq.com/wpa/qunwpa?idkey=30e5f1123a79867570f665aa3a483ca404b1c3f77737bc01ec520ed5f078ddef)
++   [ApacheCN 机器学习交流群 724187166](https://qm.qq.com/cgi-bin/qm/qr?k=Gb-dgdOIFRT2A09lMZLTG5shvqbw1U1d&jump_from=webapi)
 +   [ApacheCN 学习资源](http://www.apachecn.org/)
 
 ## 建议反馈
